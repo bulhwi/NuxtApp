@@ -1,5 +1,7 @@
-\<template>
-  <Tutorial/>
+<template>
+  <div>
+    <p>Nuxt</p>
+  </div>
 </template>
 
 <script>
