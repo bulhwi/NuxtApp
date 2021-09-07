@@ -4,3 +4,4 @@
 * [JSON Placeholder](https://jsonplaceholder.typicode.com/) - dummy api 제공하는 fake server
 * [json-server](https://github.com/typicode/json-server)
 * [eslint vue/order-in-components](https://eslint.vuejs.org/rules/order-in-components.html)
+* [Nuxt context 속성 설명](https://nuxtjs.org/docs/2.x/internals-glossary/context)

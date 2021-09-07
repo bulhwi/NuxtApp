@@ -5,15 +5,17 @@
         <input type='text'>
       </div>
       <ul>
-        <li v-for='product in products' :key='product.id' class='item flex'>
+        <li
+          v-for='product in products'
+          :key='product.id'
+          class='item flex'
+          @click='moveToDetailPage(product.id)'
+        >
           <img class='product-image' :src='product.imageUrl' :alt='product.name' />
           <p>{{ product.name }}</p>
           <span>{{ product.price }}</span>
         </li>
       </ul>
-      <div class='cart-wrapper'>
-        <button class='btn'>장바구니 바로가기</button>
-      </div>
     </main>
   </div>
 </template>
@@ -23,13 +25,18 @@ import axios from 'axios';
 
 export default {
   name: 'Index',
-  async asyncData({ params, $http }) {
+  async asyncData() {
     const response = await axios.get('http://localhost:3000/products');
     const products = response.data.map(item => ({
       ...item,
       imageUrl: `${item.imageUrl}?random=${Math.random()}`
     }));
     return { products };
+  },
+  methods: {
+    moveToDetailPage(id) {
+      this.$router.push(`detail/${id}`);
+    }
   }
 };
 </script>
