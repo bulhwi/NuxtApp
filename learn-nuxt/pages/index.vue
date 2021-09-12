@@ -1,9 +1,10 @@
 <template>
   <div class='app'>
     <main>
-      <div>
-        <input type='text'>
-      </div>
+      <SearchInput
+        :search-key-word='searchKeyWord'
+        @input='updateSearchKeyWord'
+      />
       <ul>
         <li
           v-for='product in products'
@@ -22,9 +23,10 @@
 
 <script>
 import axios from 'axios';
-
+import SearchInput from '~/components/SearchInput';
 export default {
   name: 'Index',
+  components:{SearchInput},
   async asyncData() {
     const response = await axios.get('http://localhost:3000/products');
     const products = response.data.map(item => ({
@@ -33,9 +35,18 @@ export default {
     }));
     return { products };
   },
+  data() {
+    return {
+      searchKeyWord: "",
+    };
+  },
   methods: {
     moveToDetailPage(id) {
       this.$router.push(`detail/${id}`);
+    },
+
+    updateSearchKeyWord(keyword) {
+      this.searchKeyWord = keyword;
     }
   }
 };
